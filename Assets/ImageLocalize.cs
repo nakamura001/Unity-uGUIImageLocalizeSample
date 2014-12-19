@@ -10,11 +10,14 @@ public class ImageLocalize : MonoBehaviour {
 		if (img) {
 			string language = Application.systemLanguage.ToString();
 			string texturePath = "images/" + language + "/" + img.sprite.name;
-			Texture2D tex = (Texture2D)Instantiate(Resources.Load(texturePath));
-			RectTransform rt = gameObject.GetComponent<RectTransform>();
-			Sprite sp = img.sprite;
-			Sprite newSp = Sprite.Create(tex, sp.rect, rt.pivot, sp.pixelsPerUnit);
-			img.sprite = newSp;
+			UnityEngine.Object obj = Resources.Load(texturePath);
+			if (obj) {
+				Texture2D tex = (Texture2D)Instantiate(obj);
+				RectTransform rt = gameObject.GetComponent<RectTransform>();
+				Sprite sp = img.sprite;
+				Sprite newSp = Sprite.Create(tex, sp.rect, rt.pivot, sp.pixelsPerUnit);
+				img.sprite = newSp;
+			}
 		}
 	}
 }
