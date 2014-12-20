@@ -13,10 +13,7 @@ public class ImageLocalize : MonoBehaviour {
 			UnityEngine.Object obj = Resources.Load(texturePath);
 			if (obj) {
 				Texture2D tex = (Texture2D)Instantiate(obj);
-				RectTransform rt = gameObject.GetComponent<RectTransform>();
-				Sprite sp = img.sprite;
-				Sprite newSp = Sprite.Create(tex, sp.rect, rt.pivot, sp.pixelsPerUnit);
-				img.sprite = newSp;
+				img.sprite.texture.LoadImage(tex.EncodeToPNG());
 			}
 		}
 	}
